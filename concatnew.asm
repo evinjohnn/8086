@@ -1,3 +1,5 @@
+
+ASSUME CS:CODE,DS:DATA
 DATA SEGMENT
 	STR1 DB 30 DUP("$")
 	STR2 DB 30 DUP("$")
@@ -45,7 +47,8 @@ CONCAT PROC
 		INC SI          ; Otherwise, move to the next character in STR1
 		JMP LOOP2       ; Repeat the loop
 	ADD_SPACE: MOV [SI]," " ; Add a space character at the end of STR1
-		INC SI          ; Move to the next position
+		INC SI  
+		JMP LOOP3        ; Move to the next position
 	LOOP3: CMP AL,[DI]  ; Check for the end of STR2
 		JZ EXIT         ; If terminator is found, exit the loop
 		MOV BL,[DI]     ; Copy character from STR2
